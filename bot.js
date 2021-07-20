@@ -4,6 +4,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 const Commands = require('./Scripts/commands')
 const Functions = require('./Scripts/Function')
 
+Functions.outPutTime();
 
 bot.start((ctx) => ctx.reply(`
 Привет ${ctx.message.from.first_name}, 
@@ -17,7 +18,7 @@ bot.on('text', (ctx) => {
     let msg = ctx.message.text.split(' ');
     // Отловка ошибок, для избежания краша бота
     let thisCommand = msg[0].toLowerCase();
-    console.log(Commands);
+    // console.log(Commands);
     try {
         if (thisCommand == Commands.help.run) ctx.reply(Functions.helpMessage(Commands));
         else if (thisCommand == Commands.go.run) ctx.reply(Functions.Go(msg));
@@ -35,15 +36,6 @@ bot.on('text', (ctx) => {
 bot.launch()
 /* Functions
 ===================================================================================== */
-
-
-
-
-
-
-
-
-
 function Coins(ctx) {
     try {
 
@@ -77,7 +69,7 @@ function Coins(ctx) {
         ArrMoney.forEach((item, i) => { ArrMoney[i] = item.join(',')});
         ArrMoney = ArrMoney.join('@');
         process.env.Puples = ArrMoney;
-        console.log(`ArrMoney = ${ArrMoney}\nprocess.env.Puples = ${process.env.Puples}`);
+        // console.log(`ArrMoney = ${ArrMoney}\nprocess.env.Puples = ${process.env.Puples}`);
 
     } catch (error) {
         ctx.reply(`У вас непредвиденная ошибка:\n${error}`);
