@@ -6,7 +6,7 @@ const Functions = require('./Scripts/Function')
 
 console.log(Functions.outPutTime());
 
-bot.start((ctx) => ctx.reply(`
+ot.start((ctx) => ctx.reply(`
 Привет ${ctx.message.from.first_name}, 
 \nЯ бот созданный для всяких разных плюшек в тг
 Подробнее: /info`
@@ -15,7 +15,7 @@ bot.start((ctx) => ctx.reply(`
 bot.help((ctx) => ctx.reply(ctx.reply(Functions.helpMessage(Commands))));
 
 bot.on('text', (ctx) => {
-    console.log(bot.on());
+    console.log(bot);
     let msg = ctx.message.text.split(' ');
     // Отловка ошибок, для избежания краша бота
     let thisCommand = msg[0].toLowerCase();
