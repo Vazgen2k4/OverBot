@@ -56,7 +56,7 @@ module.exports = {
         let sec = time.getSeconds();
 
 
-        return console.log(`Бот запущен:\nДата запуска: ${day}/${month}/${year} ${hor}:${min}:${sec}`);
+        return `Бот запущен:\nДата запуска: ${day}/${month}/${year} ${hor}:${min}:${sec}`;
     },
 }
 

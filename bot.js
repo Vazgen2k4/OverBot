@@ -4,7 +4,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 const Commands = require('./Scripts/commands')
 const Functions = require('./Scripts/Function')
 
-Functions.outPutTime();
+console.log(Functions.outPutTime());
 
 bot.start((ctx) => ctx.reply(`
 Привет ${ctx.message.from.first_name}, 
