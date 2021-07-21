@@ -1,12 +1,12 @@
 require('dotenv').config();
 const { Telegraf } = require('telegraf');
 const bot = new Telegraf(process.env.BOT_TOKEN);
-const Commands = require('./Scripts/commands')
-const Functions = require('./Scripts/Function')
+const Commands = require('./Scripts/commands');
+const Functions = require('./Scripts/Function');
 
 console.log(Functions.outPutTime());
 
-ot.start((ctx) => ctx.reply(`
+bot.start((ctx) => ctx.reply(`
 Привет ${ctx.message.from.first_name}, 
 \nЯ бот созданный для всяких разных плюшек в тг
 Подробнее: /info`
@@ -15,7 +15,7 @@ ot.start((ctx) => ctx.reply(`
 bot.help((ctx) => ctx.reply(ctx.reply(Functions.helpMessage(Commands))));
 
 bot.on('text', (ctx) => {
-    console.log(bot);
+    // console.log(ctx.message);
     let msg = ctx.message.text.split(' ');
     // Отловка ошибок, для избежания краша бота
     let thisCommand = msg[0].toLowerCase();
@@ -25,7 +25,7 @@ bot.on('text', (ctx) => {
         else if (thisCommand == Commands.go.run) ctx.reply(Functions.Go(msg));
         else if (thisCommand == Commands.love) ctx.reply(Functions.Love());
         else if (thisCommand == Commands.rand.run) CommandRand(ctx, msg);
-        else if (thisCommand == Commands.money.run) Coins(ctx);
+        else if (thisCommand == Commands.stat.run) ctx.reply(Functions.getStat(ctx, ctx.message)); 
         else if (thisCommand == Commands.myid.run) ctx.reply(`Ваш ID в телеграмме:\n${ctx.message.from.id}`)
     } catch (error) {
         console.log("Произошла ошибка типа:" + error);

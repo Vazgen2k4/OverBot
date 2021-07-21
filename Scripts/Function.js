@@ -1,3 +1,6 @@
+let Users = require('./Users');
+let UsersList = JSON.parse(process.env.Puples); 
+// require('./Puples');
 module.exports = {
     // Функция вывода всех комманд
     //===============================================================================================
@@ -16,7 +19,7 @@ module.exports = {
         let Letters = 'аеёиоуыэюяaeiouy'.split('');
         let num = 0;
         let NewStr = [];
-    
+        
         msg[1].split('').forEach((item) => {
             NewStr.push(item);
             Letters.forEach(e => {
@@ -54,15 +57,67 @@ module.exports = {
         let hor = time.getHours();
         let min = time.getMinutes();
         let sec = time.getSeconds();
-
-
-        return `Бот запущен:\nДата запуска: ${day}/${month}/${year} ${hor}:${min}:${sec}`;
+        
+        
+        return `=============================================================================\nБот запущен:\nДата запуска: ${day}/${month}/${year} ${hor}:${min}:${sec}`;
     },
+    // Функция для показа статистики чел-ка
+    //===============================================================================================
+    getStat(ctx, UserInfo) {
+        let message = "Протокол пиздыкнулся"; 
+        let index = -1;
+        let name = UserInfo.from.username;
+        let id = UserInfo.from.id ;
+
+        // console.log(UserInfo);
+        UsersList.forEach((item, i) => {
+            if(item.id === id) {
+                index = i;
+            }
+        });
+
+        if (UsersList.length === 0 || index === -1) {
+            addUsers({name, id});
+            index = UsersList.length - 1;
+        }
+        console.log(UsersList[index]);
+
+        message = `Профиль: ${UsersList[index].name}\n\nСтатус: ${UsersList[index].info.status}\nУровень: ${UsersList[index].info.level}\nКоличество баллов: ${UsersList[index].info.points}
+        `
+        
+        // let newUser = new Users({
+        //     name: "OverLord2k4",
+        //     id: 389495959,
+        //     level: "infinity",
+        //     status: "Создатель",
+        //     points: 369369369
+        // });
+        
+        // Puples.forEach((item) => {
+        //     if ( fromID === item.id) {
+        //         value = item.info;
+        //     }
+        // });
+            
+        return message;
+    },   
 }
-
-
 // Вспомогательные функции
 //===================================================================================================
 function rand(min = 0, max = 100) {
     return Math.floor((Math.random()*(max + 1 - min)) + min);
+}
+
+// Функция для Добавления пользователя
+//==============================================================================================
+function addUsers({name, id, level = 1, status = "Beginer", points = 0}) { 
+    let newUser = new Users({
+        name,
+        id,
+        level,
+        status,
+        points
+    });
+
+    UsersList.push(newUser);
 }

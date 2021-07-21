@@ -8,9 +8,9 @@ module.exports = {
         run: '/go',
         descr: 'Подщет гласных букв в предложении\nФормат ввода - /go <предложение>'
     },
-    money: {
-        run:'/coins',
-        descr: 'Показать кол-во монет'
+    stat: {
+        run:'/status',
+        descr: 'Показать статистику'
     },
     rand: {
         run:'/rand',
