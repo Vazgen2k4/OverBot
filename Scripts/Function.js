@@ -143,7 +143,7 @@ module.exports = {
                     newNum++;
                     addUsers({name:userName, id:idForUdate, points:newNum});
                 };
-                return `Уровень ползователя: ${userName} обновлён`;
+                return `Баллы ползователя: ${userName} обновлены`;
             } else {
                 return `Увас нет прав доступа для данной команды`;
             }
