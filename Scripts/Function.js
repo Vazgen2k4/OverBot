@@ -121,7 +121,7 @@ module.exports = {
     },   
     // Функция для обновления Point-ов
     //===============================================================================================
-    pointUp(msg, newNum = 1) {
+    pointUp(msg, newNum = 0) {
         if (msg.reply_to_message) {
             let id = msg.from.id;
             let Update = false;
