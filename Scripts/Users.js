@@ -8,4 +8,7 @@ module.exports = class Users {
             points
         }
     }
+// Методы 
+// ==================================================================
+   UpdateLevel = (num) => this.info.level += num; 
 }

@@ -6,7 +6,7 @@ const Functions = require('./Scripts/Function');
 
 console.log(Functions.outPutTime());
 
-bot.start((ctx) => ctx.reply(`
+ot.start((ctx) => ctx.reply(`
 Привет ${ctx.message.from.first_name}, 
 \nЯ бот созданный для всяких разных плюшек в тг
 Подробнее: /info`
@@ -25,8 +25,10 @@ bot.on('text', (ctx) => {
         else if (thisCommand == Commands.go.run) ctx.reply(Functions.Go(msg));
         else if (thisCommand == Commands.love) ctx.reply(Functions.Love());
         else if (thisCommand == Commands.rand.run) CommandRand(ctx, msg);
-        else if (thisCommand == Commands.stat.run) ctx.reply(Functions.getStat(ctx, ctx.message)); 
+        else if (thisCommand == Commands.stat.run) ctx.reply(Functions.getStat(ctx.message)); 
         else if (thisCommand == Commands.myid.run) ctx.reply(`Ваш ID в телеграмме:\n${ctx.message.from.id}`)
+
+        console.log(ctx.message);
     } catch (error) {
         console.log("Произошла ошибка типа:" + error);
         ctx.reply('Произошла ошибка\n/info - список команд');

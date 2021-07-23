@@ -20,6 +20,10 @@ module.exports = {
         run:'/myid',
         descr:`Показывает ва Телеграм ID`,
     },
+    levelUp: {
+        run:'/levelup',
+        descr:`Возможность обновить уровень (Если есть доступ)`,
+    },
     love: '/l',
 };
 

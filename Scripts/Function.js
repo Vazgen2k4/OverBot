@@ -1,6 +1,7 @@
 let Users = require('./Users');
 let UsersList = JSON.parse(process.env.Puples); 
-// require('./Puples');
+let AdninsID = [389495959]; 
+
 module.exports = {
     // Функция вывода всех комманд
     //===============================================================================================
@@ -63,7 +64,7 @@ module.exports = {
     },
     // Функция для показа статистики чел-ка
     //===============================================================================================
-    getStat(ctx, UserInfo) {
+    getStat(UserInfo) {
         let message = "Протокол пиздыкнулся"; 
         let index = -1;
         let name = UserInfo.from.username;
@@ -82,24 +83,15 @@ module.exports = {
         }
         console.log(UsersList[index]);
 
-        message = `Профиль: ${UsersList[index].name}\n\nСтатус: ${UsersList[index].info.status}\nУровень: ${UsersList[index].info.level}\nКоличество баллов: ${UsersList[index].info.points}
-        `
-        
-        // let newUser = new Users({
-        //     name: "OverLord2k4",
-        //     id: 389495959,
-        //     level: "infinity",
-        //     status: "Создатель",
-        //     points: 369369369
-        // });
-        
-        // Puples.forEach((item) => {
-        //     if ( fromID === item.id) {
-        //         value = item.info;
-        //     }
-        // });
-            
+        message = `Профиль: ${UsersList[index].name}\n\nСтатус: ${UsersList[index].info.status}\nУровень: ${UsersList[index].info.level}\nКоличество баллов: ${UsersList[index].info.points}`;   
         return message;
+    },   
+    // Функция для обновления уровня
+    //===============================================================================================
+    levelUp(msg) {
+        if (msg.reply) {
+            
+        }
     },   
 }
 // Вспомогательные функции
