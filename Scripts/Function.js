@@ -121,7 +121,7 @@ module.exports = {
     },   
     // Функция для обновления Point-ов
     //===============================================================================================
-    pointUp(msg, newNum = 0) {
+    pointUp(msg, newNum = 1) {
         if (msg.reply_to_message) {
             let id = msg.from.id;
             let Update = false;
@@ -140,7 +140,6 @@ module.exports = {
                 })
                 
                 if (!isFound) {
-                    newNum++;
                     addUsers({name:userName, id:idForUdate, points:newNum});
                 };
                 return `Баллы ползователя: ${userName} обновлены`;
