@@ -10,5 +10,6 @@ module.exports = class Users {
     }
 // Методы 
 // ==================================================================
-   UpdateLevel = (num) => this.info.level += num; 
+   UpdateLevel = (num) => this.info.level += Number(num); 
+   UpdatePoints = (num) => this.info.points += Number(num); 
 }

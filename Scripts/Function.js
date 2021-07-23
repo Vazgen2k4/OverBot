@@ -1,6 +1,7 @@
+const { levelUp } = require('./commands');
 let Users = require('./Users');
 let UsersList = JSON.parse(process.env.Puples); 
-let AdninsID = [389495959]; 
+let AdminsID = [389495959]; 
 
 module.exports = {
     // Функция вывода всех комманд
@@ -70,7 +71,6 @@ module.exports = {
         let name = UserInfo.from.username;
         let id = UserInfo.from.id ;
 
-        // console.log(UserInfo);
         UsersList.forEach((item, i) => {
             if(item.id === id) {
                 index = i;
@@ -81,17 +81,79 @@ module.exports = {
             addUsers({name, id});
             index = UsersList.length - 1;
         }
-        console.log(UsersList[index]);
 
         message = `Профиль: ${UsersList[index].name}\n\nСтатус: ${UsersList[index].info.status}\nУровень: ${UsersList[index].info.level}\nКоличество баллов: ${UsersList[index].info.points}`;   
         return message;
     },   
     // Функция для обновления уровня
     //===============================================================================================
-    levelUp(msg) {
-        if (msg.reply) {
+    levelUp(msg, newNum = 1) {
+        if (msg.reply_to_message) {
+            let id = msg.from.id;
+            let Update = false;
+
+            AdminsID.forEach((item) => Update = item === id ? true: Update);
+    
+            if (Update) {
+                let idForUdate = msg.reply_to_message.from.id;
+                let userName = msg.reply_to_message.from.username; 
+
+               
+                let isFound = false;
+                UsersList.forEach((item) => {
+                    if (item.id === idForUdate) {
+                        isFound = true;
+                        item.UpdateLevel(newNum);
+                    }
+                })
+                
+                if (!isFound) {
+                    newNum++;
+                    addUsers({name:userName, id:idForUdate, level:newNum});
+                };
             
+                return `Уровень ползователя: ${userName} обновлён`;
+            } else {
+                return `Увас нет прав доступа для данной команды`;
+            }
         }
+       
+    },   
+    // Функция для обновления Point-ов
+    //===============================================================================================
+    pointUp(msg, newNum = 1) {
+        if (msg.reply_to_message) {
+            let id = msg.from.id;
+            let Update = false;
+            AdminsID.forEach((item) => Update = item === id ? true: Update);
+    
+            if (Update) {
+                let idForUdate = msg.reply_to_message.from.id;
+                let userName = msg.reply_to_message.from.username; 
+                let isFound = false;
+
+                UsersList.forEach((item) => {
+                    if (item.id === idForUdate) {
+                        isFound = true;
+                        item.UpdatePoints(newNum);
+                    }
+                })
+                
+                if (!isFound) {
+                    newNum++;
+                    addUsers({name:userName, id:idForUdate, points:newNum});
+                };
+                return `Уровень ползователя: ${userName} обновлён`;
+            } else {
+                return `Увас нет прав доступа для данной команды`;
+            }
+        }
+       
+    },   
+    // Функция для Вывода в консоль списка пользователей в json
+    //===============================================================================================
+    saveInfoUsersList() {
+        console.log(JSON.stringify(UsersList));
     },   
 }
 // Вспомогательные функции
@@ -110,6 +172,5 @@ function addUsers({name, id, level = 1, status = "Beginer", points = 0}) {
         status,
         points
     });
-
     UsersList.push(newUser);
 }

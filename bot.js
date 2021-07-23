@@ -6,7 +6,7 @@ const Functions = require('./Scripts/Function');
 
 console.log(Functions.outPutTime());
 
-ot.start((ctx) => ctx.reply(`
+bot.start((ctx) => ctx.reply(`
 Привет ${ctx.message.from.first_name}, 
 \nЯ бот созданный для всяких разных плюшек в тг
 Подробнее: /info`
@@ -26,9 +26,12 @@ bot.on('text', (ctx) => {
         else if (thisCommand == Commands.love) ctx.reply(Functions.Love());
         else if (thisCommand == Commands.rand.run) CommandRand(ctx, msg);
         else if (thisCommand == Commands.stat.run) ctx.reply(Functions.getStat(ctx.message)); 
-        else if (thisCommand == Commands.myid.run) ctx.reply(`Ваш ID в телеграмме:\n${ctx.message.from.id}`)
+        else if (thisCommand == Commands.myid.run) ctx.reply(`Ваш ID в телеграмме:\n${ctx.message.from.id}`);
+        else if (thisCommand == Commands.levelUp.run) ctx.reply(Functions.levelUp(ctx.message, msg[1]));
+        else if (thisCommand == Commands.pointsUp.run) ctx.reply(Functions.pointUp(ctx.message, msg[1]));
+        else if (thisCommand == Commands.save) Functions.saveInfoUsersList();
 
-        console.log(ctx.message);
+        // console.log(ctx.message);
     } catch (error) {
         console.log("Произошла ошибка типа:" + error);
         ctx.reply('Произошла ошибка\n/info - список команд');
@@ -72,7 +75,7 @@ function Coins(ctx) {
         ArrMoney.forEach((item, i) => { ArrMoney[i] = item.join(',')});
         ArrMoney = ArrMoney.join('@');
         process.env.Puples = ArrMoney;
-        // console.log(`ArrMoney = ${ArrMoney}\nprocess.env.Puples = ${process.env.Puples}`);
+      
 
     } catch (error) {
         ctx.reply(`У вас непредвиденная ошибка:\n${error}`);
