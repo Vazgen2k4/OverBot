@@ -6,7 +6,7 @@ const Functions = require('./Scripts/Function');
 
 console.log(Functions.outPutTime());
 
-bot.start((ctx) => ctx.reply(`
+ot.start((ctx) => ctx.reply(`
 Привет ${ctx.message.from.first_name}, 
 \nЯ бот созданный для всяких разных плюшек в тг
 Подробнее: /info`
