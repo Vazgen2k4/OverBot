@@ -28,6 +28,10 @@ module.exports = {
         run:'/point',
         descr:`Возможность обновить баллы (Если есть доступ)`,
     },
+    levelBuy: {
+        run:'/blevel',
+        descr:`Возможность купить 1 уровень за 100 баллов`,
+    },
     save: '/s',
     love: '/l',
 };
