@@ -161,4 +161,16 @@ function addUsers({ name, id, level = 1, status = "Beginer", points = 0 }) {
     });
     UsersList.push(newUser);
 }
+// Функция для обновления статуса
+//==============================================================================================
+function addUsers(index) {
+    let level = UsersList[index].info.level;
+    let StatusList = [
+        'Beginer', 'Elementary', 'Pre-Intermediate', 
+        'Intermediate', 'Upper-Intermediate', 'Advanced',
+        'Proficiency'
+    ];
+
+    UsersList[index].info.status = StatusList[Math.round(level/10)];
+}
 

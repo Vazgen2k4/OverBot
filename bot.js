@@ -19,16 +19,48 @@ bot.on('text', (ctx) => {
     let thisCommand = msg[0].toLowerCase();
 
     try {
-        if (thisCommand == Commands.help.run) ctx.reply(Functions.helpMessage(Commands));
-        else if (thisCommand == Commands.go.run) ctx.reply(Functions.Go(msg));
-        else if (thisCommand == Commands.love) ctx.reply(Functions.Love());
-        else if (thisCommand == Commands.rand.run) CommandRand(ctx, msg);
-        else if (thisCommand == Commands.stat.run) ctx.reply(Functions.getStat(ctx.message));
-        else if (thisCommand == Commands.myid.run) ctx.reply(`Ваш ID в телеграмме:\n${ctx.message.from.id}`);
-        else if (thisCommand == Commands.levelUp.run) ctx.reply(Functions.updateUsers(ctx.message, 'level', msg[1]));
-        else if (thisCommand == Commands.pointsUp.run) ctx.reply(Functions.updateUsers(ctx.message, 'points', msg[1]));
-        else if (thisCommand == Commands.levelBuy.run) ctx.reply(Functions.buyLevel(ctx.message, 100));
-        else if (thisCommand == Commands.save) Functions.saveInfoUsersList();
+        
+        switch (thisCommand) {
+            case Commands.help.run:
+                ctx.reply(Functions.helpMessage(Commands));
+                break;
+
+            case Commands.go.run:
+                ctx.reply(Functions.Go(msg));
+                break;
+
+            case Commands.love:
+                ctx.reply(Functions.Love());
+                break;
+
+            case Commands.rand.run:
+                CommandRand(ctx, msg);
+                break;
+
+            case Commands.stat.run:
+                ctx.reply(Functions.getStat(ctx.message));
+                break;
+
+            case Commands.myid.run:
+                ctx.reply(`Ваш ID в телеграмме:\n${ctx.message.from.id}`);
+                break;
+
+            case Commands.levelUp.run:
+                ctx.reply(Functions.updateUsers(ctx.message, 'level', msg[1]));
+                break;
+
+            case Commands.pointsUp.run:
+                ctx.reply(Functions.updateUsers(ctx.message, 'points', msg[1]));
+                break;
+
+            case Commands.levelBuy.run:
+                ctx.reply(Functions.buyLevel(ctx.message, 100));
+                break;
+
+            case Commands.save:
+                Functions.saveInfoUsersList();
+                break;
+        }
 
     } catch (error) {
         console.log("Произошла ошибка типа:" + error);
@@ -38,3 +70,27 @@ bot.on('text', (ctx) => {
 });
 
 bot.launch()
+
+
+
+/* if (thisCommand == Commands.help.run) {
+        }
+        else if (thisCommand == Commands.go.run) {
+        }
+        else if (thisCommand == Commands.love) {
+        }
+        else if (thisCommand == Commands.rand.run) {
+        }
+        else if (thisCommand == Commands.stat.run) {
+        }
+        else if (thisCommand == Commands.myid.run) {
+        }
+        else if (thisCommand == Commands.levelUp.run) {
+        }
+        else if (thisCommand == Commands.pointsUp.run) {
+        }
+        else if (thisCommand == Commands.levelBuy.run) {
+        }
+        else if (thisCommand == Commands.save) {
+        }
+ */
