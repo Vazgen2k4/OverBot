@@ -3,11 +3,11 @@ const { Telegraf } = require('telegraf');
 const bot = new Telegraf(process.env.BOT_TOKEN);
 const Commands = require('./Scripts/commands');
 const Functions = require('./Scripts/Function');
-const botName = '@OverB0t_bot';
+const botName = '@overb0t_bot';
 
 console.log(Functions.outPutTime());
 
-ot.start((ctx) => ctx.reply(`Привет ${ctx.message.from.first_name},\n\nЯ бот созданный для всяких разных плюшек в тг\nПодробнее: /info`));
+bot.start((ctx) => ctx.reply(`Привет ${ctx.message.from.first_name},\n\nЯ бот созданный для всяких разных плюшек в тг\nПодробнее: /info`));
 
 bot.help((ctx) => ctx.reply(ctx.reply(Functions.helpMessage(Commands))));
 
