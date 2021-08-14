@@ -69,6 +69,8 @@ bot.on('text', (ctx) => {
                 break;
         }
 
+        print(thisCommand + botName);
+
     } catch (error) {
         console.log("Произошла ошибка типа:" + error);
         ctx.reply('Произошла ошибка\n/info - список команд');
