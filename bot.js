@@ -7,7 +7,7 @@ const botName = '@OverB0t_bot';
 
 console.log(Functions.outPutTime());
 
-bot.start((ctx) => ctx.reply(`Привет ${ctx.message.from.first_name},\n\nЯ бот созданный для всяких разных плюшек в тг\nПодробнее: /info`));
+ot.start((ctx) => ctx.reply(`Привет ${ctx.message.from.first_name},\n\nЯ бот созданный для всяких разных плюшек в тг\nПодробнее: /info`));
 
 bot.help((ctx) => ctx.reply(ctx.reply(Functions.helpMessage(Commands))));
 
@@ -69,7 +69,7 @@ bot.on('text', (ctx) => {
                 break;
         }
 
-        print(thisCommand + botName);
+        console.log(thisCommand + botName);
 
     } catch (error) {
         console.log("Произошла ошибка типа:" + error);
