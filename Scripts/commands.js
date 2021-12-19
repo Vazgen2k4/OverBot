@@ -32,6 +32,10 @@ module.exports = {
         run:'/blevel',
         descr:`Возможность купить 1 уровень за 100 баллов`,
     },
+    allUsers: {
+      run: '/allUsers',
+      descr: 'Отметить сразу всех пользователей в чате', 
+    },
     save: '/s',
     love: '/l',
 };

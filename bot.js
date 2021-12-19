@@ -1,6 +1,15 @@
 require('dotenv').config();
-const { Telegraf } = require('telegraf');
+// Подключение телеграфф 
+const {
+    Telegraf
+} = require('telegraf');
+// создание бота
 const bot = new Telegraf(process.env.BOT_TOKEN);
+// Подключение клавиатуры
+const {Keyboard} = require('telegraf-keyboard');
+// Cоздание клавиатуры
+const keyboard = Keyboard.inline(['Кнопка 1', 'Кнопка 2']);
+
 const Commands = require('./Scripts/commands');
 const Functions = require('./Scripts/Function');
 const botName = '@overb0t_bot';
@@ -16,7 +25,7 @@ bot.on('text', (ctx) => {
     let thisCommand = msg[0].toLowerCase();
 
     try {
-        
+
         switch (thisCommand) {
             case Commands.help.run:
             case Commands.help.run + botName:
@@ -79,27 +88,3 @@ bot.on('text', (ctx) => {
 });
 
 bot.launch()
-
-
-
-/* if (thisCommand == Commands.help.run) {
-        }
-        else if (thisCommand == Commands.go.run) {
-        }
-        else if (thisCommand == Commands.love) {
-        }
-        else if (thisCommand == Commands.rand.run) {
-        }
-        else if (thisCommand == Commands.stat.run) {
-        }
-        else if (thisCommand == Commands.myid.run) {
-        }
-        else if (thisCommand == Commands.levelUp.run) {
-        }
-        else if (thisCommand == Commands.pointsUp.run) {
-        }
-        else if (thisCommand == Commands.levelBuy.run) {
-        }
-        else if (thisCommand == Commands.save) {
-        }
- */
